@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget>
+    <name>T.S.U.P.E.R.</name>
+    <description>
+        This app is a project developed by TRANSMUTER
+    </description>
+    <author email="Transmuter@phonegap.com" href="http://phonegap.com">
+      TEAM TRANSMUTER 
+    </author>
+    <content src="index.html" />
+       <icon src="www/image/mlogo.png"/>
+
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
+
+
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
