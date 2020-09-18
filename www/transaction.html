@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/internal.css">
+    <title>TSUPER</title>
+
+    <script>
+        $(document).ready(function() {
+            var username = localStorage.getItem("myValue");
+            document.getElementById("name").innerHTML = username;
+
+
+            var url = "http://192.168.1.59/tsuper/www/php/insert.php?username=" + username + "";
+
+            $.getJSON(url, function(result) {
+                console.log(result);
+                $.each(result, function(i, field) {
+                    var id = field.id;
+                    var title = field.appoint_name;
+                    var duration = field.appoint_con;
+                    var price = field.appoint_date;
+                    var status = field.status;
+
+
+                    $("#listview").append("<a class='item' href='form_doctor.html?id=" + id + "&title=" + title + "&duration=" + duration + "&price=" + price + "&status=" + status + "'><span class='item-note'><h2>" + price + "</h2><p>" + status + "</p></span>" + title + "<p>" + duration + "</p></a>");
+                });
+            });
+        })
+
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "180";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <h2>Transaction</h2>
+        </div>
+    </header>
+
+
+
+    <span class="menu" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+        <a href="home.html">Home</a>
+        <a href="transaction.html">Transaction</a>
+        <a href="#">Settings</a>
+        <a id="logoutbtn">Logout</a>
+
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+    </div>
+</body>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/LoginReg.js"></script>
+
+</html>

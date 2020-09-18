@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CRUD Operation</title>
+    <link rel="stylesheet" type="text/css" href="css/internal.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/LoginReg.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var id = decodeURI(getUrlVars()["Jeepney_ID"]);
+            var Jeepney_Color = decodeURI(getUrlVars()["Jeepney_Color"]);
+            var Jeepney_Route = decodeURI(getUrlVars()["Jeepney_Route"]);
+            var Jeepney_Body_No = decodeURI(getUrlVars()["Jeepney_Body_No"]);
+            $("#id").val(Jeepney_ID);
+            $("#Jeepney_Color").val(Jeepney_Color);
+            $("#Jeepney_Route").val(Jeepney_Route);
+            $("#Jeepney_Body_No").val(Jeepney_Body_No);
+
+            $("#update").click(function() {
+                var id = $("#id").val();
+                var Jeepney_Color = $("#Jeepney_Color").val();
+                var Jeepney_Route = $("#Jeepney_Route").val();
+                var Jeepney_Body_No = $("#Jeepney_Body_No").val();
+                var dataString = "id=" + Jeepney_ID + "&Jeepney_Color=" + Jeepney_Color + "&Jeepney_Route=" + Jeepney_Route + "&Jeepney_Body_No=" + Jeepney_Body_No + "&update=";
+                alert(dataString);
+                $.post('http://192.168.1.59/tsuper/wwww/php/update.php', {
+                        data: dataString
+                    },
+                    function(response) {
+                        if (response == "success") {
+                            alert("Data Updated");
+                            $("#update").val("Update");
+                            window.location.href = "home.html";
+                        } else if (response == "error") {
+                            alert("error");
+                        }
+                    }
+                )
+            })
+            $("#delete").click(function() {
+
+                var id = $("#id").val();
+                var dataString = "id=" + id + "&delete=";
+                $.get('http://192.168.1.59/tsuper/wwww/php/delete.php', {
+                        data: dataString
+                    },
+                    function(response) {
+                        if (data == "success") {
+                            alert("Data Deleted");
+                            $("#delete").val("Delete");
+                            window.location.href = "home.html";
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    })
+            })
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div class="bar bar-header bar-positive" style="margin-bottom:80px;background-color: green">
+        <h1 class="title">EDIT</h1>
+    </div>
+    <br/>
+    <br/>
+    <div class="list">
+        <input type="hidden" id="id" value="" />
+        <div class="item">
+            <label>Jeepney_Color</label>
+            <input type="text" id="Jeepney_Color" value="" />
+        </div>
+        <div class="item">
+            <label>Jeepney_Route</label>
+            <input type="text" id="Jeepney_Route" value="" />
+        </div>
+        <div class="item">
+            <label>Jeepney_Body_No</label>
+            <input type="text" id="Jeepney_Body_No" value="" />
+        </div>
+        <div class="item">
+            <input type="button" id="update" class="button button-block" value="Update" />
+            <input type="button" id="delete" class="button button-block" value="Delete" />
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

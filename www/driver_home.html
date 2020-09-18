@@ -1,0 +1,139 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=yes, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/internal.css">
+    <title>TSUPER</title>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <img src="image/mlogo.png">
+        </div>
+    </header>
+    <br>
+    <div class="header">
+        <header>Driver Dashboard</header>
+    </div>
+    <span class="menu" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+
+        <a href="driver_home.html">Dashboard</a>
+        <a href="driver_profile.html">Profile</a>
+        <a href="driver_transaction.html">Transaction</a>
+        <a href="#">Settings</a>
+        <a id="logoutbtn">Logout</a>
+
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+    </div>
+
+    <form enctype="multipart/form-data" id="frm" autocomplete="off">
+        <div class="container-register">
+
+            <label for="Jeepney_Body_No"><b>Jeepney Body No</b></label>
+            <input type="text" placeholder="Enter Jeepney Body No" name="Jeepney_Body_No" id="Jeepney_Body_No" maxlength="2">
+
+            <label for="Jeepney_Body_No"><b>Jeepney Capacity</b></label>
+            <input type="number" placeholder="Enter Jeepney Capacity" name="Jeepney_Capacity" id="Jeepney_Capacity" min="1" max="2">
+
+            <label for="Jeepney_Color"><b>Jeepney Color</b></label>
+            <select name="Jeepney_Color" id="Jeepney_Color">
+                <option value="Orange">Orange</option>
+                <option value="Yellow">Yellow</option>
+                <!-- <option value="Blue Yellow">Blue Yellow</option> -->
+                <option value="Brown">Brown</option>
+                <!-- <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+                <option value="White Cream">White Cream</option>
+                <option value="Green">Green</option> -->
+            </select>
+
+            <label for="Jeepney_Route"><b>Jeepney Route</b></label>
+            <select name="Jeepney_Route" id="Jeepney_Route">
+                <option value="DownTown to Gordon Heights">DownTown to Gordon Heights</option>
+                <option value="Sta. Rita To Gate">Sta. Rita To Gate</option>
+                <!-- <option value="Tabacuhan To New Market">Tabacuhan To New Market</option> -->
+                 <option value="New Market To Old/New Cabalan">New Market To Old/New Cabalan</option>
+              <!-- <--  <option value="Gate To Mabayuan">Gate To Mabayuan</option>
+                <option value="Olongapo To Subic">Olongapo To Subic</option>
+                <option value="Gordon Heights To New Market">Gordon Heights To New Market</option>
+                <option value="Mabayuan To New Market">Mabayuan To New Market</option> --> -->
+            </select>
+
+            <input type="button" id="registerbtn" class="registerbtn" value="Insert">
+        </div>
+    </form>
+
+
+
+</body>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/LoginReg.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() { // code for registration
+
+        var username = localStorage.getItem("myValue");
+        document.getElementById("name").innerHTML = username;
+    })
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "180";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+
+
+    $('#registerbtn').click(function() {
+        var Jeepney_Body_No = $('#Jeepney_Body_No').val(); // stores data from ID inputs
+        var Jeepney_Color = $('#Jeepney_Color').val();
+        var Jeepney_Route = $('#Jeepney_Route').val();
+        var Jeepney_Capacity = $('#Jeepney_Capacity').val();
+        var Boolean = confirm("Are you sure? ");
+
+        if (Boolean == true) {
+
+
+            if (Jeepney_Color == "" || Jeepney_Route == "" || Jeepney_Body_No == "") { // Value validation
+                alert("Please check input");
+
+
+            } else { // If validation are true, this code executes
+                /*  */
+                $.post('http://localhost/tsuper/www/php/insert_jeepney.php', {
+                        Jeepney_Body_No: Jeepney_Body_No,
+                        Jeepney_Color: Jeepney_Color,
+                        Jeepney_Route: Jeepney_Route,
+                        Jeepney_Capacity: Jeepney_Capacity
+
+                    },
+                    function(response) {
+                        if (response == 'success') { // If php response is success, this code executes  and procceeds to chooseuser.html         
+                            window.location.href = "driver_home.html";
+                        }
+                        alert(response); // When php found username you enter already exists
+                    });
+            }
+        } else {
+            alert("No Data Inserted!");
+        }
+    });
+</script>
+
+</html>
