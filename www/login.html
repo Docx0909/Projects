@@ -35,7 +35,6 @@
                     <hr>
                     <a href="register.html"><input type="button" class="register-submit" value="Register"></a>
                     <br>
-                    <p id="status"></p>
                 </form>
                 <div class="register">
                     <p><span><a href="register.html"> Need Help?</a> </span></p>
@@ -46,7 +45,6 @@
 </body>
 
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/LoginReg.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -57,6 +55,9 @@
 
             if (username == "" && password == "") {
                 alert("Empty Credentials");
+
+                return false;
+
             } else {
                 $.post('http://192.168.1.59/tsuper/www/php/login.php', {
                         username: username,

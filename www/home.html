@@ -21,27 +21,30 @@
 
     <form enctype="multipart/form-data" id="frm" autocomplete="off">
         <div class="container-register">
-            <div class="header">
+            <div class="page">
                 <header>Jeepney Routes</header>
             </div>
             <br>
-            <a href="orange.html"> <input type="button" id="registerbtn" class="registerbtn" value="Orange"></a>
-            <a href="yellow.html"> <input type="button" id="registerbtn" class="registerbtn" value="Yellow"></a>
-            <a href="brown.html"><input type="button" id="registerbtn" class="registerbtn" value="Brown"> </a>
+            <a href="orange.html"> <input type="button" id="Orange" class="route" value="Orange"></a>
+            <a href="yellow.html"> <input type="button" id="Yellow" class="route" value="Yellow"></a>
+            <a href="brown.html"><input type="button" id="Brown" class="route" value="Brown"> </a>
         </div>
     </form>
 
     <span class="menu" onclick="openNav()">&#9776;</span>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+
         <a href="home.html">Home</a>
         <a href="transaction.html">Transaction</a>
         <a href="#">Settings</a>
         <a id="logoutbtn">Logout</a>
 
-        <div class="bottom">
-            <a id="name"></a>
-        </div>
+
     </div>
 
 
@@ -52,6 +55,9 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/LoginReg.js"></script>
 <script type="text/javascript">
+    var username = localStorage.getItem("myValue");
+    document.getElementById("name").innerHTML = username;
+
     function openNav() {
         document.getElementById("mySidenav").style.width = "180";
     }

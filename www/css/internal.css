@@ -11,7 +11,7 @@ body {
 }
 
 .header {
-    padding: 0px;
+    padding: 15px;
     display: flex;
     position: relative;
     justify-content: center;
@@ -23,8 +23,24 @@ img {
     height: auto;
 }
 
+.page {
+    padding: 25px;
+    margin-bottom: 0;
+    display: flex;
+    position: relative;
+    border-radius: 15px;
+    justify-content: center;
+    background-color: #99ff99;
+}
+
 
 /* side menu */
+
+#name {
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: bold;
+}
 
 .menu {
     top: 15px;
@@ -36,9 +52,6 @@ img {
     margin-right: 50px;
     position: absolute;
 }
-
-
-/* 233, 202, 64) */
 
 .sidenav {
     height: 100%;
@@ -81,13 +94,6 @@ img {
         font-size: 18px;
     }
 }
-
-
-/* 
-.bottom {
-    position: relative;
-    top: 10%;
-} */
 
 
 /* Register jeepney */
@@ -138,23 +144,43 @@ hr {
 /* Set a style for the submit/register button */
 
 .registerbtn {
+    width: 100%;
+    border: none;
+    padding: 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    padding: 16px 40px;
+    letter-spacing: 1px;
     background-color: #c6b9ff;
     color: rgb(255, 255, 255);
-    letter-spacing: 1px;
-    padding: 16px 40px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
+}
+
+
+/* Jeepney Route buttons */
+
+.route {
     width: 100%;
+    border: none;
+    padding: 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    padding: 16px 40px;
+    border-radius: 15px;
+    letter-spacing: 5px;
+    color: rgb(255, 255, 255);
 }
 
 
-/* Add a blue text color to links */
+/* buttons color */
 
-a {
-    color: dodgerblue;
+#Orange {
+    background-color: orange;
 }
 
-.container-signin {
-    background-color: white;
+#Yellow {
+    background-color: rgb(238, 238, 14);
+}
+
+#Brown {
+    background-color: brown;
 }
