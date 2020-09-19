@@ -174,13 +174,13 @@ hr {
 /* buttons color */
 
 #Orange {
-    background-color: orange;
+    background: linear-gradient(to right, orange, #99ff99);
 }
 
 #Yellow {
-    background-color: rgb(238, 238, 14);
+    background: linear-gradient(to right, rgb(238, 238, 14), #99ff99);
 }
 
 #Brown {
-    background-color: brown;
+    background: linear-gradient(to right, Brown, #99ff99);
 }
