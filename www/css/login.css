@@ -1,40 +1,46 @@
-    html {
-        height: 100%;
-    }
-    
-    body {
-        background: linear-gradient(to bottom, #ffffff 20%, #99ff99 100%);
-        height: 50%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-    
-    * {
-        box-sizing: border-box
-    }
-    
-    .logo {
-        top: 30%;
-        display: flex;
-        position: relative;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    img {
-        width: 40%;
-        height: auto;
-        border-radius: 170px;
-        box-shadow: 1px 1px 4px 2px rgb(200, 200, 200);
-    }
-    
-    .container-login {
-        top: 45%;
-        position: relative;
-        text-align: center;
-    }
-    /* logo */
-    /* .page-heading{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&display=swap');
+html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom, #ffffff 20%, #99ff99 100%);
+    height: 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+* {
+    box-sizing: border-box
+}
+
+.logo {
+    top: 30%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    width: 40%;
+    height: auto;
+    border-radius: 170px;
+    box-shadow: 1px 1px 4px 2px rgb(200, 200, 200);
+}
+
+.container-login {
+    top: 45%;
+    position: relative;
+    text-align: center;
+}
+
+
+/* logo */
+
+
+/* .page-heading{
     font-family: Marker Felt, fantasy;
     font-size:  2em;
     margin: 0px 30px 20px 30px;
@@ -44,61 +50,67 @@
     border-bottom: 1px solid rgb(0, 0, 0);
     
 } */
-    
-    p {
-        text-align: center;
-    }
-    /* paragraphs */
-    
-    .login-container .form-control {
-        position: relative;
-    }
-    
-    .login-container .form-control input {
-        width: 85%;
-        border: none;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        background: #f1f1f1;
-    }
-    
-    .login-container .form-control input {
-        margin: 10px;
-        padding: 15px;
-        text-align: center;
-        border-radius: 15px;
-    }
-    
-    .login-container .form-control input.password {
-        margin-bottom: 20px;
-    }
-    /* inputs */
-    
-    .button-submit {
-        width: 85%;
-        padding: 15px;
-        margin-bottom: 5%;
-        cursor: pointer;
-        color: #ffffff;
-        position: relative;
-        border-radius: 15px;
-        letter-spacing: 1px;
-        background: #c6b9ff;
-        border: 1px solid #75d375;
-    }
-    
-    .register-submit {
-        width: 85%;
-        padding: 15px;
-        cursor: pointer;
-        color: #ffffff;
-        position: relative;
-        border-radius: 15px;
-        letter-spacing: 1px;
-        background: #75d375;
-        border: 1px solid #75d375;
-    }
-    /* 
+
+p {
+    text-align: center;
+}
+
+
+/* paragraphs */
+
+.login-container .form-control {
+    position: relative;
+}
+
+.login-container .form-control input {
+    width: 85%;
+    border: none;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    background: #f1f1f1;
+}
+
+.login-container .form-control input {
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.login-container .form-control input.password {
+    margin-bottom: 20px;
+}
+
+
+/* inputs */
+
+.button-submit {
+    width: 85%;
+    padding: 15px;
+    margin-bottom: 5%;
+    cursor: pointer;
+    color: #ffffff;
+    position: relative;
+    border-radius: 15px;
+    letter-spacing: 1px;
+    background: #c6b9ff;
+    border: 1px solid #75d375;
+}
+
+.register-submit {
+    width: 85%;
+    padding: 15px;
+    cursor: pointer;
+    color: #ffffff;
+    position: relative;
+    border-radius: 15px;
+    letter-spacing: 1px;
+    background: #75d375;
+    border: 1px solid #75d375;
+}
+
+
+/* 
 .register {
     /* bottom: auto;
     display: flex;
@@ -107,61 +119,72 @@
     justify-content: space-between;
     border-top: 1px solid rgb(0, 0, 0);
 } */
-    /* Register Header */
-    
-    .register-header {
-        text-align: center;
-    }
-    
-    .container-register,
-    .container-signin {
-        padding: 15px;
-        text-align: left;
-    }
-    /* Full-width input fields */
-    
-    input[type=text],
-    input[type=password],
-    #usertype {
-        width: 100%;
-        border: none;
-        padding: 15px;
-        text-align: center;
-        border-radius: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        background: #ffffff;
-    }
-    
-    input[type=text]:focus,
-    input[type=password]:focus {
-        outline: none;
-        background-color: rgb(176, 230, 179);
-    }
-    /* Overwrite default styles of hr */
-    
-    hr {
-        border: 1px solid #f1f1f1;
-        margin-bottom: 25px;
-    }
-    /* Set a style for the submit/register button */
-    
-    .registerbtn {
-        background-color: #c6b9ff;
-        color: rgb(255, 255, 255);
-        letter-spacing: 1px;
-        padding: 16px 40px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-    }
-    /* Add a blue text color to links */
-    
-    a {
-        color: dodgerblue;
-    }
-    
-    .container-signin {
-        background-color: white;
-    }
+
+
+/* Register Header */
+
+.register-header {
+    text-align: center;
+}
+
+.container-register,
+.container-signin {
+    padding: 15px;
+    text-align: left;
+}
+
+
+/* Full-width input fields */
+
+input[type=text],
+input[type=password],
+input[type=number],
+#usertype {
+    width: 100%;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    border-radius: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    background: #ffffff;
+}
+
+input[type=text]:focus,
+input[type=password]:focus {
+    outline: none;
+    background-color: rgb(176, 230, 179);
+}
+
+
+/* Overwrite default styles of hr */
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+
+/* Set a style for the submit/register button */
+
+.registerbtn {
+    background-color: #c6b9ff;
+    color: rgb(255, 255, 255);
+    letter-spacing: 1px;
+    padding: 16px 40px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+/* Add a blue text color to links */
+
+a {
+    color: dodgerblue;
+}
+
+.container-signin {
+    background-color: white;
+}

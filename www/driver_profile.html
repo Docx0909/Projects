@@ -5,7 +5,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=yes, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/internal.css">
     <title>TSUPER</title>
@@ -17,14 +17,14 @@
             <img src="image/mlogo.png">
         </div>
     </header>
-
+    <ul id="result"></ul>
     <span class="menu" onclick="openNav()">&#9776;</span>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
         <div class="bottom">
             <a id="name"></a>
         </div>
-
+        <hr>
         <a href="driver_home.html">Dashboard</a>
         <a href="driver_profile.html">Profile</a>
         <a href="driver_transaction.html">Transaction</a>
@@ -67,28 +67,61 @@
         document.getElementById("mySidenav").style.width = "0";
     }
 
-    $(document).ready(function() {
-        // Login function
-        var username = localStorage.getItem("myValue");
-        if (username == "") {
-            alert("Empty Credentials");
-        } else {
-            $.get('http://192.168.1.59/tsuper/www/php/driver_profile.php', {
-                    username: username
-                },
-                function(response) {
-                    if (response == 'success') {
-                        alert(" Commuter Page!");
-                        alert("Welcome, " + username);
-                        localStorage.loginstatus = "true";
-                        localStorage.setItem("myValue", username);
-                        window.location.href = "home.html";
-                    } else {
-                        alert("Invalid Credentials");
-                    }
-                });
+    $(".search").keyup(function() {
+        var searchid = $(username).val();
+        var dataString = 'search=' + searchid;
+        if (searchid != '') {
+            $.ajax({
+                type: "POST",
+                url: "driver_profile.php",
+                data: dataString,
+                cache: false,
+                success: function(html) {
+                    $("#result").html(html).show();
+                }
+            });
+        }
+        return false;
+    });
+
+    jQuery("#result").live("click", function(e) {
+        var $clicked = $(e.target);
+        var $name = $clicked.find('.name').html();
+        var decoded = $("<div/>").html($name).text();
+        $('#searchid').val(decoded);
+    });
+    jQuery(document).live("click", function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.hasClass("search")) {
+            jQuery("#result").fadeOut();
         }
     });
+    $('#searchid').click(function() {
+        jQuery("#result").fadeIn();
+    });
+
+    // $(document).ready(function() {
+    //     // Login function
+    //     var username = localStorage.getItem("myValue");
+    //     if (username == "") {
+    //         alert("Empty Credentials");
+    //     } else {
+    //         $.get('http://192.168.1.59/tsuper/www/php/driver_profile.php', {
+    //                 username: username
+    //             },
+    //             function(response) {
+    //                 if (response == 'success') {
+    //                     alert(" Commuter Page!");
+    //                     alert("Welcome, " + username);
+    //                     localStorage.loginstatus = "true";
+    //                     localStorage.setItem("myValue", username);
+    //                     window.location.href = "home.html";
+    //                 } else {
+    //                     alert("Invalid Credentials");
+    //                 }
+    //             });
+    //     }
+    // });
 </script>
 
 </html>

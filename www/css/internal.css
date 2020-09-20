@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&display=swap');
 html {
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -37,9 +39,8 @@ img {
 /* side menu */
 
 #name {
-    font-size: 40px;
-    color: #ffffff;
-    font-weight: bold;
+    font-size: auto;
+    color: rgb(255, 255, 255);
 }
 
 .menu {
@@ -166,7 +167,7 @@ hr {
     cursor: pointer;
     padding: 16px 40px;
     border-radius: 15px;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
     color: rgb(255, 255, 255);
 }
 

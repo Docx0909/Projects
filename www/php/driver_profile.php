@@ -1,11 +1,13 @@
 <?php
+	header("Access-Control-Allow-Origin: *");
+
     require_once 'connect.php';
+ 
 
-    if(isset($_GE['username'])
-    {
-        $username = $_GET['username'];
-
+    if(isset($_GET['username'])){
         
+        $username = $_GET['username'];
+  
         $q_profile  = $conn->query("SELECT * FROM users WHERE username= '$username'") or die (mysqli_error());
         $f_profile = $q_profile->fetch_array();
         $v_profile = $q_profile->num_rows;
@@ -18,8 +20,10 @@
             $contact = $row['contact'];
             $username = $row['username'];
         }
+
+
     }
-    exit();
-    }
+    
+    
 
 ?>

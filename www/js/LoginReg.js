@@ -23,6 +23,9 @@ $(document).ready(function() {
                 function(response) {
                     if (response == 'success') {
                         alert("successfully logout!");
+                        localStorage.loginstatus = "false";
+                        var username = localStorage.removeItem("");
+                        localStorage.removeItem("myValue", username);
                         window.location = 'login.html', true;
                     }
                 })
