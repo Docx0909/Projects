@@ -1,0 +1,162 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=yes, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/internal.css">
+    <title>TSUPER</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <img src="image/mlogo.png">
+        </div>
+    </header>
+
+    <form enctype="multipart/form-data" id="frm" autocomplete="off">
+        <div class="container-register">
+            <div class="page">
+                <header>Your Profile</header>
+            </div>
+            <br>
+            <input type="hidden" id="user_id" value="" />
+
+            <label for="Username"><b>User Type</b></label>
+            <input type="text" id="usertype" value="" readonly>
+
+            <label for="Username"><b>Full Name</b></label>
+            <input type="text" id="fullname" value="">
+
+            <label for="Username"><b>Profile Name</b></label>
+            <input type="text" id="username" value="">
+
+            <label for="Name"><b>Select Your Gender</b></label>
+            <select name="usertype" id="gender">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                  </select>
+
+            <label for="contactnumber"><b>Age</b></label>
+            <input type="text" id="age" value="">
+
+            <label for="contactnumber"><b>Contact Number</b></label>
+            <input type="text" id="contactnumber" value="">
+
+
+
+            <label for="Password"><b>Password</b></label>
+            <input type="password" id="password" value="">
+
+
+            <hr>
+            <input type="button" id="update" class="registerbtn" value="Save Changes" />
+        </div>
+    </form>
+
+    <span class="menu" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+        <hr>
+        <a href="home.html">Home</a>
+        <a href="transaction.html">Transaction</a>
+        <a href="proceed-commuter.html">Profile</a>
+        <a id="logoutbtn">Logout</a>
+    </div>
+</body>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/LoginReg.js"></script>
+<script type="text/javascript">
+    var username = localStorage.getItem("myValue");
+    document.getElementById("name").innerHTML = username;
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "180";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+    var id = decodeURI(getUrlVars()["user_id"]);
+    var usertype = decodeURI(getUrlVars()["usertype"]);
+    var fullname = decodeURI(getUrlVars()["fullname"]);
+    var contactnumber = decodeURI(getUrlVars()["contactnumber"]);
+    var username = decodeURI(getUrlVars()["username"]);
+    var password = decodeURI(getUrlVars()["password"]);
+    var gender = decodeURI(getUrlVars()["gender"]);
+    var age = decodeURI(getUrlVars()["age"]);
+
+    $(document).ready(function() {
+        $("#user_id").val(id);
+        $("#usertype").val(usertype);
+        $("#fullname").val(fullname);
+        $("#username").val(username);
+        $("#password").val(password);
+        $("#contactnumber").val(contactnumber);
+        $("#gender").val(gender);
+        $("#age").val(age);
+
+
+
+
+        $('#update').click(function() {
+            var id = $("#user_id").val();
+            var usertype = $("#usertype").val();
+            var fullname = $("#fullname").val();
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var contactnumber = $("#contactnumber").val();
+            var gender = $("#gender").val();
+            var age = $("#age").val();
+
+
+
+
+
+            var Boolean = confirm("Are you sure? ");
+
+            if (usertype == "" || username == "" || password == "" || contactnumber == "" || fullname == "" || age == "") {
+                alert("Double Check Inputs!");
+                return false;
+
+
+            } else(Boolean == true)
+
+            $.post('http://192.168.1.59/tsuper/www/php/profile_update.php', {
+                    id: id,
+                    usertype: usertype,
+                    fullname: fullname,
+                    username: username,
+                    password: password,
+                    contactnumber: contactnumber,
+                    gender: gender,
+                    age: age
+
+                },
+                function(response) {
+                    if (response == 'success') {
+                        alert("Profile Update Success!");
+                        window.location.href = "proceed-commuter.html";
+                    } else {
+                        console.log();
+                    }
+                }
+            );
+        });
+
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/internal.css">
+    <title>TSUPER</title>
+    <script>
+        $(document).ready(function() {
+            var username = localStorage.getItem("myValue");
+            document.getElementById("name").innerHTML = username;
+
+
+            var url = "http://192.168.1.59/tsuper/www/php/user_transaction.php?username=" + username;
+
+
+            $.getJSON(url, function(result) {
+                console.log(result);
+                $.each(result, function(i, field) {
+                    var id = field.Jtrans_ID;
+                    var username = field.username;
+                    var Jeepney_Driver = field.Jeepney_Driver;
+                    var Jeepney_Fair = field.Jeepney_Fair;
+                    var Jeepney_Body_No = field.Jeepney_Body_No;
+                    var Jeepney_Seat_Reserve = field.Jeepney_Seat_Reserve;
+                    var time_date = field.timedate;
+
+
+
+
+                    $("#listview").append("<a class='item' href='user-form.html?Jtrans_ID=" + id + "&username=" + username + "&Jeepney_Driver=" + Jeepney_Driver +
+                        "&Jeepney_Fair=" + Jeepney_Fair + " &Jeepney_Body_No=" + Jeepney_Body_No + " &Jeepney_Seat_Reserve=" + Jeepney_Seat_Reserve + " &time_date=" + time_date +
+                        "'<span class='item-note'><h2>" + Jeepney_Body_No + "</h2><p>" + Jeepney_Seat_Reserve + "</p><p>" + time_date + "</p></a> ");
+                });
+            });
+        });
+
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "180";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <img src="image/mlogo.png">
+        </div>
+    </header>
+    <form enctype="multipart/form-data" id="frm" autocomplete="off">
+        <div class="container-register">
+            <div class="page">
+                <header>Transaction</header>
+            </div>
+            <br>
+            <div>
+                <ul id="listview"></ul>
+            </div>
+        </div>
+    </form>
+
+    <span class="menu" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+        <hr>
+        <a href="home.html">Home</a>
+        <a href="transaction.html">Transaction</a>
+        <a href="proceed-commuter.html">Profile</a>
+        <a id="logoutbtn">Logout</a>
+
+
+    </div>
+</body>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/LoginReg.js"></script>
+
+</html>

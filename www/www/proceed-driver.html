@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/internal.css">
+    <title>TSUPER</title>
+    <script>
+        $(document).ready(function() {
+            var username = localStorage.getItem("myValue");
+            document.getElementById("name").innerHTML = username;
+
+
+            var url = "http://192.168.1.59/tsuper/www/php/driver_profile.php?username=" + username;
+
+            $.getJSON(url, function(result) {
+                console.log(result);
+                $.each(result, function(i, field) {
+                    var id = field.user_id;
+                    var usertype = field.usertype;
+                    var fullname = field.fullname;
+                    var contactnumber = field.contactnumber;
+                    var gender = field.gender;
+                    var age = field.age;
+                    var username = field.username;
+                    var password = field.password;
+
+
+
+
+
+
+                    $("#listview").append("<a class='item' href='driver_profile.html?user_id=" + id + "&usertype=" + usertype + "&fullname=" + fullname +
+                        "&contactnumber=" + contactnumber + "&gender=" + gender + "&age=" + age + "&username=" + username +
+                        " &password=" + password + "'><span class='item-note'><h2>" +
+                        usertype + "</h2><p>" + username + "</p></a> ");
+                });
+            });
+        })
+
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "180";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <h1>Profiling</h1>
+        </div>
+    </header>
+    <form enctype="multipart/form-data" id="frm" autocomplete="off">
+        <div class="container-register">
+
+            <br>
+            <div>
+                <div class="page">
+                    <h3>Proceed to Profile</h3>
+                    <a>
+                        <ul id="listview"></ul>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+    <span class="menu" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+        <hr>
+        <a href="driver_home.html">Dashboard</a>
+        <a href="driver_profile.html">Profile</a>
+        <a href="driver_transaction.html">Transaction</a>
+        <a href="#">Settings</a>
+        <a id="logoutbtn">Logout</a>
+    </div>
+</body>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/LoginReg.js"></script>
+
+</html>

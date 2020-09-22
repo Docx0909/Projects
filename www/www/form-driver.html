@@ -1,0 +1,158 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=yes, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/internal.css">
+    <title>TSUPER</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <img src="image/mlogo.png">
+        </div>
+    </header>
+
+    <form enctype="multipart/form-data" id="frm" autocomplete="off">
+        <div class="container-register">
+            <div class="page">
+                <header>Update Transaction</header>
+            </div>
+            <br>
+            <input type="hidden" id="Jeepney_ID" value="" />
+            <label for="Jeepney_Driver"><b>Commuter Name</b></label>
+            <input type="text" id="username" value="" readonly>
+
+            <label for="Jeepney_Body_No"><b>Body Number</b></label>
+            <input type="text" id="Jeepney_Body_No" value="" readonly>
+
+            <label for="Jeepney_Seat_Reserve"><b>Reserve Seat</b></label>
+            <input type="text" id="Jeepney_Seat_Reserve" value="" readonly>
+
+
+            <label for="Jeepney_Seat_Reserve"><b>Total Capacity</b></label>
+            <input type="text" id="Jeepney_Capacity" value="" readonly>
+
+            <label for="Jeepney_Available_Seat"><b>Available Seat</b></label>
+            <input type="text" id="Jeepney_Available_Seat" value="" readonly>
+
+            <hr>
+            <label for="Jeepney_Vacant_Seat"><b>Number of Vacant</b></label>
+            <input type="number" id="Jeepney_Vacant_Seat" value="">
+
+            <input type="button" id="update" class="registerbtn" value="UPDATE" />
+            <!-- <input type="button" id="delete" class="registerbtn" value="Delete" /> -->
+        </div>
+    </form>
+
+    <span class="menu" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+
+        <div class="bottom">
+            <a id="name"></a>
+        </div>
+        <hr>
+        <a href="driver_home.html">Dashboard</a>
+        <a href="driver_profile.html">Profile</a>
+        <a href="driver_transaction.html">Transaction</a>
+        <a href="#">Settings</a>
+        <a id="logoutbtn">Logout</a>
+    </div>
+</body>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/LoginReg.js"></script>
+<script type="text/javascript">
+    var username = localStorage.getItem("myValue");
+    document.getElementById("name").innerHTML = username;
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "180";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+    var id = decodeURI(getUrlVars()["Jtrans_ID"]);
+    var username = decodeURI(getUrlVars()["username"]);
+    var Jeepney_Driver = decodeURI(getUrlVars()["Jeepney_Driver"]);
+    var Jeepney_Fair = decodeURI(getUrlVars()["Jeepney_Fair"]);
+    var Jeepney_Route = decodeURI(getUrlVars()["Jeepney_Route"]);
+    var Jeepney_Body_No = decodeURI(getUrlVars()["Jeepney_Body_No"]);
+    var Jeepney_Capacity = decodeURI(getUrlVars()["Jeepney_Capacity"]);
+    var Jeepney_Seat_Reserve = decodeURI(getUrlVars()["Jeepney_Seat_Reserve"]);
+    var Jeepney_Available_Seat = decodeURI(getUrlVars()["Jeepney_Available_Seat"]);
+    var time_date = decodeURI(getUrlVars()["time_date"]);
+
+
+
+
+
+    $(document).ready(function() {
+        $("#username").val(username);
+        $("#Jeepney_ID").val(id);
+        $("#Jeepney_Driver").val(Jeepney_Driver);
+        $("#Jeepney_Route").val(Jeepney_Route);
+        $("#Jeepney_Body_No").val(Jeepney_Body_No);
+        $("#Jeepney_Capacity").val(Jeepney_Capacity);
+        $("#Jeepney_Seat_Reserve").val(Jeepney_Seat_Reserve);
+        $("#Jeepney_Available_Seat").val(Jeepney_Available_Seat);
+
+
+        $('#update').click(function() {
+            var Jeepney_Body_No = $("#Jeepney_Body_No").val();
+            var Jeepney_Vacant_Seat = $("#Jeepney_Vacant_Seat").val();
+            var Jeepney_Capacity = $("#Jeepney_Capacity").val();
+            var Jeepney_Remaining_Seat = $("#Jeepney_Available_Seat").val();
+
+
+
+            var Total = (+Jeepney_Remaining_Seat) + (+Jeepney_Vacant_Seat);
+
+            var Boolean = confirm("Are you sure? ");
+
+            if (Total > Jeepney_Capacity) {
+                alert("Over Capacity, Please recheck!");
+                return false;
+
+
+            } else if (Jeepney_Vacant_Seat == "") {
+                alert("Enter a Number");
+                return false;
+
+
+
+            } else if (Boolean == true) {
+
+            }
+
+            $.post('http://192.168.1.59/tsuper/www/php/driver_update.php', {
+                    Jeepney_Body_No: Jeepney_Body_No,
+                    Total: Total
+
+                },
+                function(response) {
+                    if (response == 'success') {
+                        alert("Total Vacant Seat: " + Total);
+                        alert("Seat Update Success!");
+                        window.location.href = "driver_transaction.html";
+                    } else {
+                        console.log();
+                    }
+                }
+            );
+        });
+
+    });
+</script>
+
+
+</html>

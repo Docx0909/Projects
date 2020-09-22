@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <title>Sign Up</title>
+
+</head>
+
+<body>
+    <div class="register-header">
+        <h1>Create Account</h1>
+        <hr>
+    </div>
+
+    <form enctype="multipart/form-data" id="frm" autocomplete="off">
+        <div class="container-register">
+            <label for="Name"><b>Full Name</b></label>
+            <input type="text" placeholder="Enter Full Name" name="FullName" id="FullName" required>
+
+            <label for="Contact"><b>Contact Number</b></label>
+            <input type="number" placeholder="Enter Contact Number" name="ContactNumber" id="ContactNumber" min="1" max="11" required>
+
+            <label for="Name"><b>Select Your Gender</b></label>
+            <select name="usertype" id="gender">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                  </select>
+
+            <label for="contactnumber"><b>Age</b></label>
+            <input type="number" id="age" value="">
+
+            <label for="Username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="Username" id="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="Cpassword" id="Cpassword" required>
+            <hr>
+
+            <label for="Name"><b>What kind of user are you?</b></label>
+            <select name="usertype" id="usertype">
+                      <option value="Commuter">Commuter</option>
+                      <option value="Driver/Operator">Driver/Operator</option>
+                  </select>
+
+
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <input type="button" id="registerbtn" class="registerbtn" value="Continue">
+            <!-- <input type="submit" class="registerbtn" name="registerbtn" id="registerbtn" value="Sign Up"></input> -->
+        </div>
+    </form>
+
+    <div class="container-signin">
+        <p>Already have an account? <a href="login.html">Sign in</a>.</p>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() { // code for registration
+
+        $('#registerbtn').click(function() {
+            var usertype = $('#usertype').val();
+            var fullname = $('#FullName').val(); // stores data from ID inputs
+            var ContactNumber = $('#ContactNumber').val();
+            var gender = $('#gender').val();
+            var age = $('#age').val();
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var cpassword = $('#Cpassword').val();
+
+            if (username == "" || password == "" || fullname == "" || ContactNumber == "" || gender == "" || age == "") { // Value validation
+                alert("Please check input");
+
+                return false;
+
+            } else if (password != cpassword) { // Password must match
+                alert("Password does not match");
+
+                return false;
+            } else { // If validation are true, this code executes
+                /*  */
+                $.post('http://192.168.1.59/tsuper/www/php/insert.php', {
+                        usertype: usertype,
+                        username: username,
+                        password: password,
+                        fullname: fullname,
+                        ContactNumber: ContactNumber,
+                        gender: gender,
+                        age: age
+                    },
+                    function(response) {
+                        if (response == 'success') { // If php response is success, this code executes  and procceeds to chooseuser.html         
+                            alert("Successfully Recorded!");
+                            localStorage.loginstatus = "true";
+                            localStorage.setItem("myValue", username);
+                            window.location = 'login.html', true;
+                        }
+                        alert(response); // When php found username you enter already exists
+                    });
+            }
+        });
+    })
+</script>
+
+</html>
