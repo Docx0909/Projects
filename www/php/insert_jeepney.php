@@ -11,8 +11,7 @@
         $Jeepney_Route =    $conn->real_escape_string($_POST['Jeepney_Route']);
 		$Jeepney_Body_No = $conn->real_escape_string($_POST['Jeepney_Body_No']);
 		$Jeepney_Capacity = $conn->real_escape_string($_POST['Jeepney_Capacity']);
-		$Jeepney_Available_Seat = $conn->real_escape_string($_POST['Jeepney_Capacity']);
-
+	    $Jeepney_Available_Seat = $Jeepney_Capacity;
 	
 			$data = $conn->query("SELECT * FROM jeepneys WHERE Jeepney_Body_No = '$Jeepney_Body_No'") or die (mysqli_error());
 			$data = $data->num_rows;
