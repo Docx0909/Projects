@@ -1,5 +1,6 @@
 <?php
-	header("Access-Control-Allow-Origin: *");
+	header('Access-Control-Allow-Origin: *');
+	
 	
 	$conn = new mysqli('localhost', 'root', '', 'phonegapdb') or die(mysqli_error());
 

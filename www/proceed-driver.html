@@ -15,26 +15,29 @@
             document.getElementById("name").innerHTML = username;
 
 
-            var url = "http://192.168.1.59/tsuper/www/php/display_transaction.php?Jeepney_Driver=" + username;
+            var url = "http://192.168.1.59/tsuper/www/php/driver_profile.php?username=" + username;
 
             $.getJSON(url, function(result) {
                 console.log(result);
                 $.each(result, function(i, field) {
-                    var id = field.Jeepney_ID;
-                    var Jeepney_Driver = field.Jeepney_Driver;
-                    var Jeepney_Color = field.Jeepney_Color;
-                    var Jeepney_Route = field.Jeepney_Route;
-                    var Jeepney_Body_No = field.Jeepney_Body_No;
-                    var Jeepney_Capacity = field.Jeepney_Capacity;
-                    var Jeepney_Available_Seat = field.Jeepney_Available_Seat;
+                    var id = field.user_id;
+                    var usertype = field.usertype;
+                    var fullname = field.fullname;
+                    var contactnumber = field.contactnumber;
+                    var gender = field.gender;
+                    var age = field.age;
+                    var username = field.username;
+                    var password = field.password;
 
 
 
 
-                    $("#listview").append("<a class='item' href='form-driver.html?Jeepney_ID=" + id + "&Jeepney_Driver=" + Jeepney_Driver + "&Jeepney_Color=" + Jeepney_Color +
-                        "&Jeepney_Route=" + Jeepney_Route + "&Jeepney_Body_No=" + Jeepney_Body_No +
-                        " &Jeepney_Capacity=" + Jeepney_Capacity + " &Jeepney_Available_Seat=" + Jeepney_Available_Seat + "'><span class='item-note'><h2>" +
-                        Jeepney_Body_No + "</h2><p>" + Jeepney_Color + "</p><p>" + Jeepney_Available_Seat + "</p></a> ");
+
+
+                    $("#listview").append("<a class='item' href='driver_profile.html?user_id=" + id + "&usertype=" + usertype + "&fullname=" + fullname +
+                        "&contactnumber=" + contactnumber + "&gender=" + gender + "&age=" + age + "&username=" + username +
+                        " &password=" + password + "'><span class='item-note'><h2>" +
+                        usertype + "</h2><p>" + username + "</p></a> ");
                 });
             });
         })
@@ -53,19 +56,23 @@
 <body>
     <header>
         <div class="header">
-            <img src="image/mlogo.png">
+            <h1>Profiling</h1>
         </div>
     </header>
     <form enctype="multipart/form-data" id="frm" autocomplete="off">
         <div class="container-register">
 
-            <div class="page">
-                <header>Driver Transaction</header>
-            </div>
+            <br>
             <div>
-                <ul id="listview"></ul>
-            </div>
+                <div class="page">
+                    <h3>Proceed to Profile</h3>
+                    <a>
+                        <ul id="listview"></ul>
+                    </a>
+                </div>
 
+            </div>
+        </div>
     </form>
 
     <span class="menu" onclick="openNav()">&#9776;</span>
@@ -76,7 +83,7 @@
         </div>
         <hr>
         <a href="driver_home.html">Dashboard</a>
-        <a href="proceed-driver.html">Profile</a>
+        <a href="driver_profile.html">Profile</a>
         <a href="driver_transaction.html">Transaction</a>
         <a href="#">Settings</a>
         <a id="logoutbtn">Logout</a>

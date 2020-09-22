@@ -116,7 +116,8 @@ input[type=text],
 input[type=password],
 input[type=number],
 #Jeepney_Color,
-#Jeepney_Route {
+#Jeepney_Route,
+#gender {
     width: 100%;
     border: none;
     padding: 15px;
@@ -173,6 +174,14 @@ hr {
 
 
 /* buttons color */
+
+#update {
+    background: rgb(24, 197, 255);
+}
+
+#delete {
+    background: rgb(226, 16, 34);
+}
 
 #Orange {
     background: linear-gradient(to right, orange, #99ff99);

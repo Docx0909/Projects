@@ -22,16 +22,20 @@
                 console.log(result);
                 $.each(result, function(i, field) {
                     var id = field.Jeepney_ID;
+                    var Jeepney_Driver = field.Jeepney_Driver;
                     var Jeepney_Color = field.Jeepney_Color;
                     var Jeepney_Route = field.Jeepney_Route;
                     var Jeepney_Body_No = field.Jeepney_Body_No;
                     var Jeepney_Capacity = field.Jeepney_Capacity;
+                    var Jeepney_Available_Seat = field.Jeepney_Available_Seat;
 
 
 
-                    $("#listview").append("<a class='item' href='form.html?id=" + id + "&color=" + Jeepney_Color +
-                        "&Route=" + Jeepney_Route + "&Body Number=" + Jeepney_Body_No + " &Jeepney Capacity=" + Jeepney_Capacity + "'><span class='item-note'><h2>" +
-                        Jeepney_Color + "</h2><p>" + Jeepney_Route + "</p></span>" + Jeepney_Body_No + "</p></span>" + Jeepney_Capacity + "</p></a>");
+
+                    $("#listview").append("<a class='item' href='Reservation-form.html?Jeepney_ID=" + id + "&Jeepney_Driver=" + Jeepney_Driver + "&Jeepney_Color=" + Jeepney_Color +
+                        "&Jeepney_Route=" + Jeepney_Route + "&Jeepney_Body_No=" + Jeepney_Body_No +
+                        " &Jeepney_Capacity=" + Jeepney_Capacity + " &Jeepney_Available_Seat=" + Jeepney_Available_Seat + "'><span class='item-note'><h2>" +
+                        Jeepney_Body_No + "</h2><p>" + Jeepney_Available_Seat + "</p></a> ");
                 });
             });
         })
@@ -67,9 +71,8 @@
         <hr>
         <a href="home.html">Home</a>
         <a href="transaction.html">Transaction</a>
-        <a href="#">Settings</a>
+        <a href="proceed-commuter.html">Profile</a>
         <a id="logoutbtn">Logout</a>
-
 
     </div>
 

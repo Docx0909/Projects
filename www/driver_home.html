@@ -26,7 +26,7 @@
         </div>
         <hr>
         <a href="driver_home.html">Dashboard</a>
-        <a href="driver_profile.html">Profile</a>
+        <a href="proceed-driver.html">Profile</a>
         <a href="driver_transaction.html">Transaction</a>
         <a href="#">Settings</a>
         <a id="logoutbtn">Logout</a>
@@ -34,7 +34,6 @@
 
     <form enctype="multipart/form-data" id="frm" autocomplete="off">
         <div class="container-register">
-            <br>
             <div class="page">
                 <header>Driver Dashboard</header>
             </div>
@@ -81,12 +80,6 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/LoginReg.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() { // code for registration
-
-        var username = localStorage.getItem("myValue");
-        document.getElementById("name").innerHTML = username;
-    })
-
     function openNav() {
         document.getElementById("mySidenav").style.width = "180";
     }
@@ -95,42 +88,59 @@
         document.getElementById("mySidenav").style.width = "0";
     }
 
+    var username = localStorage.getItem("myValue");
+    document.getElementById("name").innerHTML = username;
+
+    $(document).ready(function() { // code for registration
 
 
-    $('#registerbtn').click(function() {
-        var Jeepney_Body_No = $('#Jeepney_Body_No').val(); // stores data from ID inputs
-        var Jeepney_Color = $('#Jeepney_Color').val();
-        var Jeepney_Route = $('#Jeepney_Route').val();
-        var Jeepney_Capacity = $('#Jeepney_Capacity').val();
-        var Boolean = confirm("Are you sure? ");
 
-        if (Boolean == true) {
+        $('#registerbtn').click(function() {
+
+            var Jeepney_Body_No = $('#Jeepney_Body_No').val(); // stores data from ID inputs
+            var Jeepney_Color = $('#Jeepney_Color').val();
+            var Jeepney_Route = $('#Jeepney_Route').val();
+            var Jeepney_Capacity = $('#Jeepney_Capacity').val();
+            $("#username").val(username);
+
+            var Boolean = confirm("Are you sure? ");
+
+            if (Boolean == true) {
 
 
-            if (Jeepney_Color == "" || Jeepney_Route == "" || Jeepney_Body_No == "") { // Value validation
-                alert("Please check input");
+                if (Jeepney_Color == "" || Jeepney_Route == "" || Jeepney_Body_No == "") { // Value validation
+                    alert("Please check input");
 
 
-            } else { // If validation are true, this code executes
-                /*  */
-                $.post('http://localhost/tsuper/www/php/insert_jeepney.php', {
-                        Jeepney_Body_No: Jeepney_Body_No,
-                        Jeepney_Color: Jeepney_Color,
-                        Jeepney_Route: Jeepney_Route,
-                        Jeepney_Capacity: Jeepney_Capacity
+                } else { // If validation are true, this code executes
+                    /*  */
+                    $.post('http://localhost/tsuper/www/php/insert_jeepney.php', {
+                            username: username,
+                            Jeepney_Body_No: Jeepney_Body_No,
+                            Jeepney_Color: Jeepney_Color,
+                            Jeepney_Route: Jeepney_Route,
+                            Jeepney_Capacity: Jeepney_Capacity
 
-                    },
-                    function(response) {
-                        if (response == 'success') { // If php response is success, this code executes  and procceeds to chooseuser.html         
-                            window.location.href = "driver_home.html";
-                        }
-                        alert(response); // When php found username you enter already exists
-                    });
+                        },
+                        function(response) {
+                            if (response == 'success') { // If php response is success, this code executes  and procceeds to chooseuser.html         
+                                alert("New Jeepney Listed!")
+
+
+                            }
+                            alert(response); // When php found username you enter already exists
+                        });
+                }
+            } else {
+                alert("No Data Inserted!");
             }
-        } else {
-            alert("No Data Inserted!");
+
+        });
+
+        document.getElementById("frm").onsubmit = function() {
+            location.reload(true);
         }
-    });
+    })
 </script>
 
 </html>

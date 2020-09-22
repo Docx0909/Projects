@@ -36,7 +36,6 @@
             <label for="Username"><b>Profile Name</b></label>
             <input type="text" id="username" value="">
 
-
             <label for="Name"><b>Select Your Gender</b></label>
             <select name="usertype" id="gender">
                       <option value="Male">Male</option>
@@ -44,10 +43,12 @@
                   </select>
 
             <label for="contactnumber"><b>Age</b></label>
-            <input type="number" id="age" value="">
+            <input type="text" id="age" value="">
 
             <label for="contactnumber"><b>Contact Number</b></label>
-            <input type="number" id="contactnumber" value="">
+            <input type="text" id="contactnumber" value="">
+
+
 
             <label for="Password"><b>Password</b></label>
             <input type="password" id="password" value="">
@@ -66,10 +67,9 @@
             <a id="name"></a>
         </div>
         <hr>
-        <a href="driver_home.html">Dashboard</a>
-        <a href="proceed-driver.html">Profile</a>
-        <a href="driver_transaction.html">Transaction</a>
-        <a href="#">Settings</a>
+        <a href="home.html">Home</a>
+        <a href="transaction.html">Transaction</a>
+        <a href="proceed-commuter.html">Profile</a>
         <a id="logoutbtn">Logout</a>
     </div>
 </body>
@@ -109,6 +109,7 @@
 
 
 
+
         $('#update').click(function() {
             var id = $("#user_id").val();
             var usertype = $("#usertype").val();
@@ -118,6 +119,7 @@
             var contactnumber = $("#contactnumber").val();
             var gender = $("#gender").val();
             var age = $("#age").val();
+
 
 
 
@@ -140,11 +142,12 @@
                     contactnumber: contactnumber,
                     gender: gender,
                     age: age
+
                 },
                 function(response) {
                     if (response == 'success') {
                         alert("Profile Update Success!");
-                        window.location.href = "proceed-driver.html";
+                        window.location.href = "proceed-commuter.html";
                     } else {
                         console.log();
                     }

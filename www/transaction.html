@@ -9,29 +9,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/internal.css">
     <title>TSUPER</title>
-
     <script>
         $(document).ready(function() {
             var username = localStorage.getItem("myValue");
             document.getElementById("name").innerHTML = username;
 
 
-            var url = "http://192.168.1.59/tsuper/www/php/insert.php?username=" + username + "";
+            var url = "http://192.168.1.59/tsuper/www/php/user_transaction.php?username=" + username;
+
 
             $.getJSON(url, function(result) {
                 console.log(result);
                 $.each(result, function(i, field) {
-                    var id = field.id;
-                    var title = field.appoint_name;
-                    var duration = field.appoint_con;
-                    var price = field.appoint_date;
-                    var status = field.status;
+                    var id = field.Jtrans_ID;
+                    var username = field.username;
+                    var Jeepney_Driver = field.Jeepney_Driver;
+                    var Jeepney_Fair = field.Jeepney_Fair;
+                    var Jeepney_Body_No = field.Jeepney_Body_No;
+                    var Jeepney_Seat_Reserve = field.Jeepney_Seat_Reserve;
+                    var time_date = field.timedate;
 
 
-                    $("#listview").append("<a class='item' href='form_doctor.html?id=" + id + "&title=" + title + "&duration=" + duration + "&price=" + price + "&status=" + status + "'><span class='item-note'><h2>" + price + "</h2><p>" + status + "</p></span>" + title + "<p>" + duration + "</p></a>");
+
+
+                    $("#listview").append("<a class='item' href='user-form.html?Jtrans_ID=" + id + "&username=" + username + "&Jeepney_Driver=" + Jeepney_Driver +
+                        "&Jeepney_Fair=" + Jeepney_Fair + " &Jeepney_Body_No=" + Jeepney_Body_No + " &Jeepney_Seat_Reserve=" + Jeepney_Seat_Reserve + " &time_date=" + time_date +
+                        "'<span class='item-note'><h2>" + Jeepney_Body_No + "</h2><p>" + Jeepney_Seat_Reserve + "</p><p>" + time_date + "</p></a> ");
                 });
             });
-        })
+        });
 
 
         function openNav() {
@@ -47,14 +53,23 @@
 <body>
     <header>
         <div class="header">
-            <h2>Transaction</h2>
+            <img src="image/mlogo.png">
         </div>
     </header>
-
+    <form enctype="multipart/form-data" id="frm" autocomplete="off">
+        <div class="container-register">
+            <div class="page">
+                <header>Transaction</header>
+            </div>
+            <br>
+            <div>
+                <ul id="listview"></ul>
+            </div>
+        </div>
+    </form>
 
     <span class="menu" onclick="openNav()">&#9776;</span>
     <div id="mySidenav" class="sidenav">
-
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
 
         <div class="bottom">
@@ -63,7 +78,7 @@
         <hr>
         <a href="home.html">Home</a>
         <a href="transaction.html">Transaction</a>
-        <a href="#">Settings</a>
+        <a href="proceed-commuter.html">Profile</a>
         <a id="logoutbtn">Logout</a>
 
 

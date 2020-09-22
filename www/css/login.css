@@ -139,7 +139,8 @@ p {
 input[type=text],
 input[type=password],
 input[type=number],
-#usertype {
+#usertype,
+#gender {
     width: 100%;
     border: none;
     padding: 15px;

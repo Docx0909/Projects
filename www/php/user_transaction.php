@@ -5,7 +5,7 @@ $data=array();
 
 $username = $_GET['username'];
 
-$q= $conn->query("SELECT * FROM users WHERE username = '$username' ");
+$q= $conn->query("SELECT * FROM jeepney_transaction WHERE username = '$username' ");
 while ($row=mysqli_fetch_object($q)){
  $data[]=$row;
 }

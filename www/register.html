@@ -28,24 +28,14 @@
             <label for="Contact"><b>Contact Number</b></label>
             <input type="number" placeholder="Enter Contact Number" name="ContactNumber" id="ContactNumber" min="1" max="11" required>
 
-            <!-- <div class="gender">
-                <label for="Gender"><b>Gender</b></label>
-                <input type="radio" id="male" name="gender" value="male">
-                <label for="male">Male</label><br>
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Female</label><br>
-                <br>
-            </div>
-            <br>
-            <div class="select-option" style="width: 180px; overflow: hidden;">
-                <label for="Profile" style="width: auto;"><b>Choose a Profile:</b></label>
-                <select name="Profile" id="Profile">
-                <option value="Student">Student</option>
-                <option value="PWD">PWD</option>
-                <option value="Senior">Senior</option>
-                </select>
-            </div>
-            <br> -->
+            <label for="Name"><b>Select Your Gender</b></label>
+            <select name="usertype" id="gender">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                  </select>
+
+            <label for="contactnumber"><b>Age</b></label>
+            <input type="number" id="age" value="">
 
             <label for="Username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="Username" id="username" required>
@@ -82,11 +72,13 @@
             var usertype = $('#usertype').val();
             var fullname = $('#FullName').val(); // stores data from ID inputs
             var ContactNumber = $('#ContactNumber').val();
+            var gender = $('#gender').val();
+            var age = $('#age').val();
             var username = $('#username').val();
             var password = $('#password').val();
             var cpassword = $('#Cpassword').val();
 
-            if (username == "" || password == "" || fullname == "" || ContactNumber == "") { // Value validation
+            if (username == "" || password == "" || fullname == "" || ContactNumber == "" || gender == "" || age == "") { // Value validation
                 alert("Please check input");
 
                 return false;
@@ -102,7 +94,9 @@
                         username: username,
                         password: password,
                         fullname: fullname,
-                        ContactNumber: ContactNumber
+                        ContactNumber: ContactNumber,
+                        gender: gender,
+                        age: age
                     },
                     function(response) {
                         if (response == 'success') { // If php response is success, this code executes  and procceeds to chooseuser.html         
