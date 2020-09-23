@@ -26,12 +26,15 @@
             </div>
             <br>
             <input type="hidden" id="Jeepney_ID" value="" />
-
-            <label for="Jeepney_Driver"><b>Your Name</b></label>
-            <input type="text" id="Jeepney_Driver" value="" readonly>
+            <label for="Jeepney_Driver"><b>Commuter Name</b></label>
+            <input type="text" id="username" value="" readonly>
 
             <label for="Jeepney_Body_No"><b>Body Number</b></label>
             <input type="text" id="Jeepney_Body_No" value="" readonly>
+
+            <label for="Jeepney_Seat_Reserve"><b>Reserve Seat</b></label>
+            <input type="text" id="Jeepney_Seat_Reserve" value="" readonly>
+
 
             <label for="Jeepney_Seat_Reserve"><b>Total Capacity</b></label>
             <input type="text" id="Jeepney_Capacity" value="" readonly>
@@ -40,7 +43,6 @@
             <input type="text" id="Jeepney_Available_Seat" value="" readonly>
 
             <hr>
-            <input type="hidden" id="username" value="" />
             <label for="Jeepney_Vacant_Seat"><b>Number of Vacant</b></label>
             <input type="number" id="Jeepney_Vacant_Seat" value="">
 
@@ -79,31 +81,34 @@
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
     }
-    var id = decodeURI(getUrlVars()["Jeepney_ID"]);
+    var id = decodeURI(getUrlVars()["Jtrans_ID"]);
     var username = decodeURI(getUrlVars()["username"]);
     var Jeepney_Driver = decodeURI(getUrlVars()["Jeepney_Driver"]);
+    var Jeepney_Fair = decodeURI(getUrlVars()["Jeepney_Fair"]);
     var Jeepney_Route = decodeURI(getUrlVars()["Jeepney_Route"]);
     var Jeepney_Body_No = decodeURI(getUrlVars()["Jeepney_Body_No"]);
     var Jeepney_Capacity = decodeURI(getUrlVars()["Jeepney_Capacity"]);
-    var Jeepney_Available_Seat = decodeURI(getUrlVars()["Jeepney_Available_Seat"]);
     var Jeepney_Seat_Reserve = decodeURI(getUrlVars()["Jeepney_Seat_Reserve"]);
+    var Jeepney_Available_Seat = decodeURI(getUrlVars()["Jeepney_Available_Seat"]);
+    var time_date = decodeURI(getUrlVars()["time_date"]);
+
 
 
 
 
     $(document).ready(function() {
-
         $("#username").val(username);
         $("#Jeepney_ID").val(id);
         $("#Jeepney_Driver").val(Jeepney_Driver);
         $("#Jeepney_Route").val(Jeepney_Route);
         $("#Jeepney_Body_No").val(Jeepney_Body_No);
         $("#Jeepney_Capacity").val(Jeepney_Capacity);
+        $("#Jeepney_Seat_Reserve").val(Jeepney_Seat_Reserve);
         $("#Jeepney_Available_Seat").val(Jeepney_Available_Seat);
 
 
         $('#update').click(function() {
-            var Jeepney_ID = $("#Jeepney_ID").val();
+            var Jeepney_Body_No = $("#Jeepney_Body_No").val();
             var Jeepney_Vacant_Seat = $("#Jeepney_Vacant_Seat").val();
             var Jeepney_Capacity = $("#Jeepney_Capacity").val();
             var Jeepney_Remaining_Seat = $("#Jeepney_Available_Seat").val();
@@ -130,7 +135,6 @@
             }
 
             $.post('http://192.168.1.59/tsuper/www/php/driver_update.php', {
-                    Jeepney_ID: Jeepney_ID,
                     Jeepney_Body_No: Jeepney_Body_No,
                     Total: Total
 

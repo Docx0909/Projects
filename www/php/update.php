@@ -13,6 +13,7 @@
  $Jeepney_Available_Seat=$_POST['result'];
  $Jeepney_Seat_Reserve = $_POST['Jeepney_Seat_Reserve'];
  $Jeepney_Fair = $_POST['Jeepney_Fair'];
+ 
  date_default_timezone_set("Asia/Manila");
  $date = date('Y/m/d H:i:s');
 
@@ -25,7 +26,7 @@
         
   
 
-                $q_login = $conn->query("INSERT INTO jeepney_transaction VALUES('','$username', '$Jeepney_Driver','$Jeepney_Fair','$Jeepney_Route', '$Jeepney_Body_No', '$Jeepney_Capacity', '$Jeepney_Seat_Reserve', '$date') ");
+                $q_login = $conn->query("INSERT INTO jeepney_transaction VALUES('','$username', '$Jeepney_Driver','$Jeepney_Fair','$Jeepney_Route', '$Jeepney_Body_No', '$Jeepney_Capacity', '$Jeepney_Seat_Reserve','$Jeepney_Available_Seat', '$date') ");
             
                 if($q_login){
                     echo "success";

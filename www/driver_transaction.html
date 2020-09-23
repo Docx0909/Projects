@@ -17,27 +17,33 @@
 
             var url = "http://192.168.1.59/tsuper/www/php/display_transaction.php?Jeepney_Driver=" + username;
 
+
             $.getJSON(url, function(result) {
                 console.log(result);
                 $.each(result, function(i, field) {
-                    var id = field.Jeepney_ID;
+                    var id = field.Jtrans_ID;
+                    var username = field.username;
                     var Jeepney_Driver = field.Jeepney_Driver;
-                    var Jeepney_Color = field.Jeepney_Color;
-                    var Jeepney_Route = field.Jeepney_Route;
+                    var Jeepney_Fair = field.Jeepney_Fair;
                     var Jeepney_Body_No = field.Jeepney_Body_No;
                     var Jeepney_Capacity = field.Jeepney_Capacity;
+                    var Jeepney_Seat_Reserve = field.Jeepney_Seat_Reserve;
                     var Jeepney_Available_Seat = field.Jeepney_Available_Seat;
+                    var time_date = field.timedate;
 
 
 
 
-                    $("#listview").append("<a class='item' href='form-driver.html?Jeepney_ID=" + id + "&Jeepney_Driver=" + Jeepney_Driver + "&Jeepney_Color=" + Jeepney_Color +
-                        "&Jeepney_Route=" + Jeepney_Route + "&Jeepney_Body_No=" + Jeepney_Body_No +
-                        " &Jeepney_Capacity=" + Jeepney_Capacity + " &Jeepney_Available_Seat=" + Jeepney_Available_Seat + "'><span class='item-note'><h2>" +
-                        Jeepney_Body_No + "</h2><p>" + Jeepney_Color + "</p><p>" + Jeepney_Available_Seat + "</p></a> ");
+                    $("#listview").append("<a class='item' href='form-driver.html?Jtrans_ID=" + id + "&username=" + username + "&Jeepney_Driver=" + Jeepney_Driver +
+                        "&Jeepney_Fair=" + Jeepney_Fair + " &Jeepney_Body_No=" + Jeepney_Body_No + " &Jeepney_Seat_Reserve=" + Jeepney_Seat_Reserve +
+                        "&Jeepney_Available_Seat=" + Jeepney_Available_Seat + "&Jeepney_Capacity=" + Jeepney_Capacity + " &time_date=" + time_date +
+                        "'<span class='item-note'><h2>" +
+                        Jeepney_Body_No + "</h2><p>" +
+                        username + "</p><p>" +
+                        time_date + "</p></a> ");
                 });
             });
-        })
+        });
 
 
         function openNav() {
