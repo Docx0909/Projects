@@ -6,5 +6,4 @@ This github repository was created for academic purposes only, somethings may no
 At the final development for now (22/09/2020)
 Along with my Group Mates
 
-Thanks
-Main Developer of Transmuter
+Developers of Transmuter
